@@ -6,7 +6,7 @@ typedef pair<long long int, long long int> pii;
 int main(){
 	ios_base::sync_with_stdio(0); cin.tie(0);
 
-	long long int x, n, maior_pilha, maior, elem;
+	long long int x, n, maior_pilha = 0, maior, maiorTotal = 0;
 	char c;
 	stack<pii> saco;
 
@@ -14,25 +14,25 @@ int main(){
 
 	for(int i = 0; i < n; i++){
 		cin >> c >> x;
+
 		if(c == 'A'){
 			if(saco.empty())
-				maior = x;
+				maior_pilha = x;
 			else{
-				tie(elem, maior_pilha) = saco.top();
-				maior = max(x, maior_pilha);	
+				maior_pilha = max(x, saco.top().second);
 			}
-			saco.push({x, maior});
+			saco.push({x, maior_pilha});
 
 		}else if( c == 'V'){
-			maior = saco.top().second;
-			cout << maior << "\n";
+			if(!saco.empty())
+				cout << saco.top().second << "\n";
+			else
+				cout << "0\n";
 
 		}else if(c == 'R'){
 			if(!saco.empty())
 				saco.top();
 		}
-
-
 	}
 
 	return 0;
