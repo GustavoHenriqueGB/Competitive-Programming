@@ -6,7 +6,7 @@ typedef pair<long long int, long long int> pii;
 int main(){
 	ios_base::sync_with_stdio(0); cin.tie(0);
 
-	long long int x, n, maior_pilha = 0, maior, maiorTotal = 0;
+	long long int x, n, maior_pilha = 0;
 	char c;
 	stack<pii> saco;
 
