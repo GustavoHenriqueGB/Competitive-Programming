@@ -1,37 +1,35 @@
 #include<bits/stdc++.h>
 
 using namespace std;
+typedef pair<long long int, long long int> pii;
 
 int main(){
 	ios_base::sync_with_stdio(0); cin.tie(0);
 
-	long long int x, n;
+	long long int x, n, maior_pilha, maior, elem;
 	char c;
-	stack<long long int> saco, sacoAux;
+	stack<pii> saco;
 
 	cin >> n;
 
 	for(int i = 0; i < n; i++){
 		cin >> c >> x;
 		if(c == 'A'){
-			saco.push(x);
-			sacoAux.push(x);
-		}else if( c == 'V'){
-			long long int max = 0;
-			while(!sacoAux.empty()){
-				while(sacoAux.size() > saco.size())
-					sacoAux.pop();
-				if(sacoAux.top()>max){
-					max = sacoAux.top();
-					sacoAux.pop();
-				}else
-					sacoAux.pop();
+			if(saco.empty())
+				maior = x;
+			else{
+				tie(elem, maior_pilha) = saco.top();
+				maior = max(x, maior_pilha);	
 			}
-			cout << max << "\n";
+			saco.push({x, maior});
+
+		}else if( c == 'V'){
+			maior = saco.top().second;
+			cout << maior << "\n";
 
 		}else if(c == 'R'){
 			if(!saco.empty())
-				saco.pop();
+				saco.top();
 		}
 
 
