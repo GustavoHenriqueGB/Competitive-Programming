@@ -1,12 +1,12 @@
 #include<bits/stdc++.h>
 
 using namespace std;
-typedef pair<long long int, long long int> pii;
+typedef pair<int, int> pii;
 
 int main(){
 	ios_base::sync_with_stdio(0); cin.tie(0);
 
-	long long int x, n, maior_pilha = 0;
+	int x, n, maior_pilha, aux;
 	char c;
 	stack<pii> saco;
 
@@ -19,6 +19,7 @@ int main(){
 			if(saco.empty())
 				maior_pilha = x;
 			else{
+				tie(aux, maior_pilha) = saco.top();
 				maior_pilha = max(x, saco.top().second);
 			}
 			saco.push({x, maior_pilha});
@@ -31,7 +32,7 @@ int main(){
 
 		}else if(c == 'R'){
 			if(!saco.empty())
-				saco.top();
+				saco.pop();
 		}
 	}
 
