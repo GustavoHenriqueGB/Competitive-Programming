@@ -6,20 +6,17 @@ typedef tuple<int, int, int, int, int> ti;
 struct ordenar{
     bool operator()(ti a, ti b){
         if(get<0>(a) == get<0>(b))
-            return get<1>(a) < get<1>(b);
+            return get<1>(a) > get<1>(b);
         else
-            return get<0>(a) < get<0>(b);
+            return get<0>(a) > get<0>(b);
     }
 };
 
 int main(){
 	ios_base::sync_with_stdio(0); cin.tie(0);
 
-	int n, livre = 0, tempoFinal = 0;
-	bool ocupado = 0;
+	int n, tempoAtual = 0;
 	priority_queue<ti, vector<ti>, ordenar> callCenter;
-
-	
 
 	cin >> n;
 
@@ -33,16 +30,16 @@ int main(){
 		int tempoChegada, id, tempoEsperado, paciencia, retorno, tempoInicial;
 		tie(tempoChegada, id, tempoEsperado, paciencia, retorno) = callCenter.top();
 		callCenter.pop();
-		tempoInicial = tempoChegada + livre;
-		livre = tempoEsperado + tempoInicial;
-		if(tempoInicial < livre)
-			tempoFinal = tempoEsperado + tempoInicial;
+		
+		if(tempoChegada > tempoAtual)
+			tempoAtual = tempoChegada;
+		if(tempoChegada + paciencia >= tempoAtual)
+			tempoAtual += tempoEsperado;
 		else
-			callCenter.push({tempoChegada+paciencia+retorno, id, tempoEsperado, paciencia, retorno});
+			callCenter.push({tempoChegada + paciencia + retorno, id, tempoEsperado, paciencia, retorno});
+	}	
 
-	}
-
-	cout << tempoFinal << "\n";
+	cout << tempoAtual << "\n";
 
 	return 0;
 		
