@@ -16,8 +16,9 @@ struct ordenar{
 int main(){
 	ios_base::sync_with_stdio(0); cin.tie(0);
 
-	int n, m, tempoAtual = 0;
-	priority_queue<ti, vector<ti>, ordenar> caixas, clientes;
+	int n, m, tempoTotal = 0;
+	priority_queue<ti, vector<ti>, ordenar> caixas;
+	queue<int> clientes;
 
 	cin >> n >> m;
 
@@ -30,24 +31,24 @@ int main(){
     for(int i = 0; i < m; i++){
 		int itens;
 		cin >> itens;
-		clientes.push({0, i, itens});
+		clientes.push(itens);
 	}
 
 	while(!clientes.empty()){
-		int tempoChegada, idCliente, qItens, vCaixa, idCaixa, quandoLivre;
-		tie(tempoChegada, idCliente, qItens) = clientes.top();
+		int tempoChegada, idCliente, vCaixa, idCaixa, quandoLivre;
+		int qItens = clientes.front();
 		tie(quandoLivre, idCaixa, vCaixa) = caixas.top();
         clientes.pop();
+		caixas.pop();
+
+		int atendimento = vCaixa * qItens;
+		int novoTempoLivre = quandoLivre + atendimento;
 		
-		if(tempoChegada > tempoAtual)
-			tempoAtual = tempoChegada;
-		if(tempoAtual >= quandoLivre)
-			tempoAtual += qItens * quandoLivre;
-		else
-			caixas.push({quandoLivre, idCaixa, vCaixa});
+		tempoTotal = max(tempoTotal, novoTempoLivre);
+		caixas.push({novoTempoLivre, idCaixa, vCaixa});
 	}	
 
-	cout << tempoAtual << "\n";
+	cout << tempoTotal << "\n";
 
 	return 0;
 		
