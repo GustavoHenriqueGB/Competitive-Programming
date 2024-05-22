@@ -1,4 +1,3 @@
-
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -14,10 +13,23 @@ int main(){
 
     for(int i = 0; i < 26; i++)
         teclado.insert(pair<char, char>(t1[i], t2[i]));
-
 	
-            
-	}
+	for(int i = 0; i < 26; i++)
+        teclado.insert(pair<char, char>(t1[i] - 32, t2[i] - 32));
+
+    for(int i = 0; i < n; i++){
+    	string entrada, answer = "";
+    	cin >> entrada;
+
+    	for(int j = 0; j < entrada.size(); j++){
+    		if(teclado.count(entrada[j]))
+    			answer += teclado[entrada[j]];
+    		else
+    			answer += entrada[j];
+    	}
+
+    	cout << answer << "\n";
+    }
 
    
 
