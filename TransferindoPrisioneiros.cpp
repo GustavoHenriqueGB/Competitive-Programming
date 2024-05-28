@@ -7,11 +7,13 @@ int main(){
 
 	int n, t, c, count = 0, ans = 0;
 	queue<int> prisioneiros;
+
+	cin >> n >> t >> c;
 	
 	for(int i = 0; i < n; i++){
 		int aux;
 		cin >> aux;
-		prisioneiros.push(aux)
+		prisioneiros.push(aux);
 	}
 
 	for(int i = 0; i < n; i++){
@@ -19,15 +21,14 @@ int main(){
 		atual = prisioneiros.front();
 		prisioneiros.pop();
 
-		if(count < c){
-			if(atual <= t){
-				count++;
-			}else{
-				count = 0;
-			}
-		}else{
+		if(atual <= t)
+			count++;
+		else
+			count = 0;
+
+		if(count == c){
 			ans++;
-			count = c - 1;
+			count--;
 		}
 	}
 
