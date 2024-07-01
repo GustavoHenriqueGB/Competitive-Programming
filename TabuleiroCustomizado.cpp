@@ -20,37 +20,37 @@ int main(){
 	for(int i = 1; i <= n; i++){
 		for(int j = 1; j <= m; j++){
 			if(tabuleiro[i][j] == '.' && !visitado[i][j]){
-                queue<tii> fila;
-                fila.push(make_tuple(i,j,letra));
-                visitado[i][j] = true;
+                		queue<tii> fila;
+               	 		fila.push(make_tuple(i,j,letra));
+                		visitado[i][j] = true;
 
-                while(!fila.empty()){
-                	int x, y;
-                	tie(x, y, letra) = fila.front();
-                	if(letra % 2 == 0)
-                		tabuleiro[x][y] = 'B';
-                	else
-                		tabuleiro[x][y] = 'W';
-                	fila.pop();
-
-                	if(tabuleiro[x - 1][y] == '.' && !visitado[x - 1][y]){
-                		fila.push(make_tuple(x - 1, y, letra + 1));
-                        visitado[x - 1][y] = true;
-                	}
-                	if(tabuleiro[x][y-1] == '.' && !visitado[x][y - 1]){
-                		fila.push(make_tuple(x, y - 1, letra + 1));
-                        visitado[x][y - 1] = true;
-                	}
-                	if(tabuleiro[x + 1][y] == '.' && !visitado[x + 1][y]){
-                		fila.push(make_tuple(x + 1, y, letra + 1));
-                        visitado[x + 1][y] = true;
-                	}
-                	if(tabuleiro[x][y + 1] == '.' && !visitado[x][y + 1]){
-                		fila.push(make_tuple(x, y + 1, letra + 1));
-                        visitado[x][y + 1] = true;
-                	}
-
-                }
+               			while(!fila.empty()){
+		                	int x, y;
+		                	tie(x, y, letra) = fila.front();
+		                	if(letra % 2 == 0)
+		                		tabuleiro[x][y] = 'B';
+		                	else
+		                		tabuleiro[x][y] = 'W';
+		                	fila.pop();
+		
+		                	if(tabuleiro[x - 1][y] == '.' && !visitado[x - 1][y]){
+		                		fila.push(make_tuple(x - 1, y, letra + 1));
+		                        	visitado[x - 1][y] = true;
+		                	}
+		                	if(tabuleiro[x][y-1] == '.' && !visitado[x][y - 1]){
+		                		fila.push(make_tuple(x, y - 1, letra + 1));
+		                        	visitado[x][y - 1] = true;
+		                	}
+		                	if(tabuleiro[x + 1][y] == '.' && !visitado[x + 1][y]){
+		                		fila.push(make_tuple(x + 1, y, letra + 1));
+		                        	visitado[x + 1][y] = true;
+		                	}
+		                	if(tabuleiro[x][y + 1] == '.' && !visitado[x][y + 1]){
+		                		fila.push(make_tuple(x, y + 1, letra + 1));
+		                       		visitado[x][y + 1] = true;
+		                	}
+		
+		                }
 			}
 		}
 	}
